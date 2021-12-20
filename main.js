@@ -131,9 +131,7 @@ Btn.addEventListener("click",function check(e){
             date.value = Cell4.textContent
             language.value = Cell5.textContent
             checkedRadio = document.querySelector('input[value="'+Cell6.textContent+'"]')
-            console.log(checkedRadio.value)
-            console.log(Cell6)
-
+            checkedRadio.checked = true;
 
             // create edit button in newDiv, it appears when I clicke the edit button in the cell 
 

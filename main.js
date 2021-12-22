@@ -7,7 +7,6 @@ Error2 = document.getElementById("Author_Error"),
 
 Btn = document.getElementById("btn"),
 
-
 Price = document.getElementById("Price"),
 Error3 = document.getElementById("Price_Error"),
 
@@ -20,73 +19,77 @@ Error4 = document.getElementById("date_Error"),
 language = document.getElementById("language"),
 Error5 = document.getElementById ("language_Error"),
 
+
 newDiv =  document.getElementById("newDiv"),
 
-radio = document.querySelector(".radioBtn")
+radio = document.querySelector(".radioBtn"),
 
 checkedRadio = document.querySelector("input[name='textFont']:checked");
 
 E404 = document.getElementsByClassName("E404"),
-console.log(checkedRadio)
 
-btn2 = document.getElementById("btn2"),
 data = document.getElementById("tbody");
 
-console.log(radio)
+ function isvalid(){
+    if(Title.value == ""   ){
+        Error1.innerHTML = " Title is necessairy "
+        return false
+    }
+     if (Title.value.length>30){
+        Error1.innerHTML = " Title is too long "
+        return false
+    }
+     if (Author.value == ""  ){
+       Error2.innerHTML = "Please fill the Name "
+       return false
+     }
+      if ( Author.value.length>30){
+        Error2.innerHTML = "Author name is too long  "
+        return false
+     }
+     if (isNaN(Price.value)  || Price.value == "" ){
+         Error3.innerHTML = "The price must be filled with a number  "
+         return false
+     }
+     if (Price.value<=0){
+        Error3.innerHTML = "Your Price is negative  "
+        return false
+     }
+     if (date.value == ""){
+         Error4.innerHTML = "Please Enter the  Date "
+         return false
+     }
+     if(language.value.length == 0){
+         Error5.innerHTML = "languege field must be filled "
+         return false
+     }
+     return true
+
+}
+
+
 
 form.addEventListener("submit",(e)=>{
     e.preventDefault()
-
 })
 
 Btn.addEventListener("click",function check(e){
     e.preventDefault()
-    console.log(radio)
 
+    let valid = isvalid();
+    console.log(valid)
+    if(!valid) return 
+    
     checkedRadio = document.querySelector('input[name=textFont]:checked');
-    console.log(checkedRadio)
-    if(Title.value ==""   ){
-        Error1.innerHTML = " Title is necessairy "
-        return
-    }
-     if (Title.value.length>30){
-        Error1.innerHTML = " Title is too long "
-        return
-    }
-     if (Author.value == ""  ){
-       Error2.innerHTML = "Please fill the Name "
-       return
-     }
-      if ( Author.value.length>30){
-        Error2.innerHTML = "Autho433QQ33r name is too long  "
-        return
-     }
-     if (isNaN(Price.value)  || Price.value == "" ){
-         Error3.innerHTML = "The price must be a number  "
-         return
-     }
-     if (Price.value<=0){
-        Error3.innerHTML = "Your Price is negative  "
-        return
-     }
-     if (date.value == ""){
-         Error4.innerHTML = "Please Enter the  Date "
-         return
-     }
-     if(language.value == ""){
-         alert ("its not cool ")
-         return
-     }
-
-     Error1.style.color="green"
-     Error1.innerHTML ="Good"
-     Error2.style.color="green"
-     Error2.innerHTML="Good"
-     Error3.style.color="green"
-     Error3.innerHTML="Good"
-     Error4.style.color = "green"
-     Error4.innerHTML = "Good"
-
+ 
+         Error1.style.color="green"
+         Error1.innerHTML ="Good"
+         Error2.style.color="green"
+         Error2.innerHTML="Good"
+         Error3.style.color="green"
+         Error3.innerHTML="Good"
+         Error4.style.color = "green"
+         Error4.innerHTML = "Good"
 
         let data = document.getElementById("tbody"),
          newRow = data.insertRow(),
@@ -96,7 +99,7 @@ Btn.addEventListener("click",function check(e){
         Cell4 = newRow.insertCell(3),
         Cell5 = newRow.insertCell(4),
         Cell6 = newRow.insertCell(5),
-        Cell7 = newRow.insertCell(6);
+        Cell7 = newRow.insertCell(6) ;
 
 
          Cell1.innerHTML = Title.value
@@ -107,12 +110,10 @@ Btn.addEventListener("click",function check(e){
          Cell6.innerHTML= checkedRadio.value
          
          const deleteBtn = document.createElement("button")
-        //  deleteBtn.id = "btnDelete"
          deleteBtn.innerText = "Delete"
-        
          const editBtn = document.createElement("button")
-        //  editBtn.id = "btnEdit"
          editBtn.innerText = "Edit"
+
          Cell7.append(deleteBtn, editBtn)
 
          deleteBtn.addEventListener("click",()=>{
@@ -121,7 +122,6 @@ Btn.addEventListener("click",function check(e){
                 newRow.remove();
              }
          })
-        //  confirm("iscool")
          
          editBtn.addEventListener("click",(e)=>{
              e.preventDefault()
@@ -134,7 +134,6 @@ Btn.addEventListener("click",function check(e){
             checkedRadio.checked = true;
 
             // create edit button in newDiv, it appears when I clicke the edit button in the cell 
-
             newDiv.innerHTML = "";
             const updateBtn = document.createElement('button')  
             updateBtn.style.height = "30px" 
@@ -143,6 +142,9 @@ Btn.addEventListener("click",function check(e){
             newDiv.append(updateBtn)
 
             updateBtn.addEventListener('click',()=>{
+                let valid = isvalid();
+                console.log(valid)
+                 if(!valid) return 
              // take values from inputs and put them in cells 
                 Cell1.innerHTML = Title.value;
                 Cell2.innerHTML = Author.value;
@@ -158,7 +160,7 @@ Btn.addEventListener("click",function check(e){
                 Price.value= ""
                 date.value = ""
                 language.value =""
-            
+            // validation message will disappear 
                 Error1.innerHTML =""
                 Error2.innerHTML=""
                 Error3.innerHTML=""

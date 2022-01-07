@@ -120,6 +120,21 @@ Btn.addEventListener("click",function check(e){
              let isAgree = confirm('Do you really want to delete ?')
              if(isAgree){
                 newRow.remove();
+
+                   // empty all inputs
+                   Title.value = ""
+                   Author.value = ""
+                   Price.value= ""
+                   date.value = ""
+                   language.value =""
+                   checkedRadio.checked= false
+
+               // validation messages will disappear 
+                   Error1.innerHTML =""
+                   Error2.innerHTML=""
+                   Error3.innerHTML=""
+                   Error4.innerHTML = ""
+
              }
          })
          
@@ -160,6 +175,7 @@ Btn.addEventListener("click",function check(e){
                 Price.value= ""
                 date.value = ""
                 language.value =""
+                checkedRadio.checked= false
             // validation message will disappear 
                 Error1.innerHTML =""
                 Error2.innerHTML=""
